@@ -1,0 +1,60 @@
+/* wanted some css practice */
+
+.maindiv {
+    display: flex;
+    border: 1px black solid;
+    margin-left: 150px;
+    justify-content: center;
+    border-radius: 25px 0px 0px 25px;
+}
+
+.sidediv {
+    border: 1px black solid;
+    margin-left: 150px;
+    justify-content: center;
+    border-radius: 25px 0px 0px 25px;
+    padding-left: 20px;
+}
+
+.headerDiv {
+    background-color: #a6c7e7;
+}
+
+body {
+    background-color: #202124;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #303134;
+}
+
+.color1 {
+    background-color: #f9cacf;
+    padding-top: 5px;
+    padding-bottom: 15px;
+}
+
+.color2 {
+    background-color: #c1e1c1;
+    padding-top: 5px;
+    padding-bottom: 15px;
+}
+
+.date {
+    background-color: #303134;
+    color: white;
+    border-radius: 5px 5px 5px 5px;
+    padding: 5px 5px 5px 5px;
+}
+
+.time {
+    background-color: #303134;
+    color: white;
+    border-radius: 5px 5px 5px 5px;
+    padding: 5px 5px 5px 5px;
+}
+
+.reloadButton {
+    color: white;
+    padding-bottom: 15px;
+}
+
+/* #c1e1c1 - green | #a6c7e7 - blue | #f9cacf - pink
