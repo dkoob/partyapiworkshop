@@ -2,7 +2,6 @@
 
 const eventList = document.querySelector(".eventList")
 const loadEvent = document.querySelector("#loadEvent")
-// const removeEvent = document.querySelector("#deleteEvent")
 let events = []
 
 // api access
@@ -11,14 +10,30 @@ async function fetchEvents() {
     const response = await fetch("https://fsa-crud-2aa9294fe819.herokuapp.com/api/2310/events")
     const data = await response.json()
     events = data.data
-    render()
+    renderEvents()
+}
+
+async function fetchGuests() {
+    const response = await fetch("https://fsa-crud-2aa9294fe819.herokuapp.com/api/2310/guests")
+    const data = await response.json()
+    guests = data.data
+    console.log(guests)
+}
+
+async function fetchRsvps() {
+    const response = await fetch("https://fsa-crud-2aa9294fe819.herokuapp.com/api/2310/rsvps")
+    const data = await response.json()
+    rsvps = data.data
+    console.log(rsvps)
 }
 
 fetchEvents()
+fetchGuests()
+fetchRsvps()
 
-// render function
+// render functions
 
-function render() {
+function renderEvents() {
     const html = events.map((event, index) => {
         return `
         <div class="${color()} sidediv">
@@ -28,9 +43,7 @@ function render() {
             <span class="splitter"></span>
             <span class="time">${event.location}</span>
             <button id="deleteEvent" data-index="${index}">Not Interested</button> <!-- data-index assigns a dataset called "index" with the property of the current array index to each button as it maps through -->
-            <div>
-                <br>
-                test
+            <div class="${event.id}"> <!-- setup for my second render function to pop into -->
             </div>
         </div>
         <br>
@@ -41,7 +54,7 @@ function render() {
         button.addEventListener('click', (event) => { // the event listener acts on click and carries out the specified event
             const index = event.target.dataset.index; // this takes our dataset from the html preview above, so we can single out the button that is clicked
             events.splice(index, 1); // simple splice to remove from array
-            render(); // re-render the page
+            renderEvents(); // re-render the page
         }) // this took me much longer than i would like to admit to find and understand
     }) 
 }
