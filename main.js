@@ -19,7 +19,7 @@ fetchEvents()
 // render function
 
 function render() {
-    const html = events.map((event) => {
+    const html = events.map((event, index) => {
         return `
         <div class="${color()} sidediv">
             <span><h2>${event.name}</h2></span>
@@ -27,24 +27,28 @@ function render() {
             <span class="date">${event.date}</span>
             <span class="splitter"></span>
             <span class="time">${event.location}</span>
-            <!--<button id="deleteEvent" l>Not Interested</button>-->
+            <button id="deleteEvent" data-index="${index}">Not Interested</button> <!-- data-index assigns a dataset called "index" with the property of the current array index to each button as it maps through -->
+            <div>
+                <br>
+                test
+            </div>
         </div>
         <br>
         `
     })
     eventList.innerHTML = html.join("")
+    document.querySelectorAll('#deleteEvent').forEach((button) => { // here we take every single button with the id of deleteEvent and go throguh each adding an event listener
+        button.addEventListener('click', (event) => { // the event listener acts on click and carries out the specified event
+            const index = event.target.dataset.index; // this takes our dataset from the html preview above, so we can single out the button that is clicked
+            events.splice(index, 1); // simple splice to remove from array
+            render(); // re-render the page
+        }) // this took me much longer than i would like to admit to find and understand
+    }) 
 }
 
 // buttons
 
 loadEvent.addEventListener("click", () => location.reload());
-
-// const index = events[0]
-// removeEvent.addEventListener("click", () => {
-//     event.preventDefault()
-//     events.splice(index, 1)
-//     console.log(events)
-// })
 
 // color function 
 
